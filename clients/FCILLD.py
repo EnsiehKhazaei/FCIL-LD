@@ -59,7 +59,7 @@ def augment_and_concatenate(x, y):
 
 class FCILLD_client(AVG):
     def __init__(self, batch_size, epochs, train_dataset, groups, kd_weight, ft_weight, syn_size, dataset_name):
-        super(DFRD_client, self).__init__(batch_size, epochs, train_dataset, groups, dataset_name)
+        super(FCILLD_client, self).__init__(batch_size, epochs, train_dataset, groups, dataset_name)
         self.kd_criterion = nn.MSELoss(reduction="none")
         self.last_valid_dim = 0
         self.valid_dim = 0
