@@ -410,7 +410,7 @@ def start():
     parser = argparse.ArgumentParser()
     parser.add_argument('--gpuID', type=str, default='0', help="GPU ID")
     parser.add_argument('--seed', type=int, default=1, help='random seed')
-    parser.add_argument('--method', type=str, default=FedAVG, help="name of method", choices=[FedAVG, FedProx, MFCL, DFRD])
+    parser.add_argument('--method', type=str, default=FedAVG, help="name of method", choices=[FedAVG, FedProx, MFCL, FCILLD])
     parser.add_argument('--dataset', type=str, default=CIFAR10)#CIFAR100, help="name of dataset")
     parser.add_argument('--num_clients', type=int, default=5)#50, help='#clients')
     parser.add_argument('--epochs', type=int, default=5)#10, help='Local Epoch size')
