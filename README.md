@@ -38,3 +38,5 @@ Please cite our paper if you find the repository helpful.
   year={2025}
 }
 ```
+
+[pdf]: [https://openreview.net/pdf?id=3b9sqxCW1x](https://openaccess.thecvf.com/content/CVPR2025W/FedVision/papers/Khazaei_Forget_Less_Learn_More_Contrastive-Based_Federated_Class_Incremental_Learning_with_CVPRW_2025_paper.pdf)
