@@ -441,7 +441,7 @@ def start():
     parser.add_argument('--path', type=str, help='path to dataset')
     parser.add_argument('--version', type=str, default='L')
     parser.add_argument('--ipc', type=int, default=3, help='#selected image per class')
-    parser.add_argument('--gen_epochs', type=int, default=5000)#5000, help='#epochs in generator')
+    parser.add_argument('--gen_epochs', type=int, default=5)#000)#5000, help='#epochs in generator')
     parser.add_argument('--temp', type=int, default=1e3, help='Distillation temperature')
     parser.add_argument('--beta_tran', type=float, default=0.0, help='hyper-parameter of L_tran loss')
     parser.add_argument('--beta_div', type=float, default=1.0, help='hyper-parameter of L_div loss')
