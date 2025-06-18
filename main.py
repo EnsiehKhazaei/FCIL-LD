@@ -9,7 +9,6 @@ from models.ResNet import ResNet18, ResNets
 from models.myNetwork import network
 from data_prep.data import CL_dataset
 from clients.simple import AVG, PROX, ORACLE
-from data_prep.super_imagenet import SuperImageNet
 from utiles import setup_seed, fedavg_aggregation, evaluate_accuracy_forgetting, evaluate_accuracy, train_gen, start
 from utiles import update_gen, create_protos, evaluate_local_accuracy
 
