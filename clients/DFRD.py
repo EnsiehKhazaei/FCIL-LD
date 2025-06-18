@@ -57,7 +57,7 @@ def augment_and_concatenate(x, y):
     y_concat = torch.cat([y, y], dim=0)
     return x_concat, y_concat
 
-class DFRD_client(AVG):
+class FCILLD_client(AVG):
     def __init__(self, batch_size, epochs, train_dataset, groups, kd_weight, ft_weight, syn_size, dataset_name):
         super(DFRD_client, self).__init__(batch_size, epochs, train_dataset, groups, dataset_name)
         self.kd_criterion = nn.MSELoss(reduction="none")
@@ -151,6 +151,8 @@ class DFRD_client(AVG):
     
                 mappings = torch.ones(self.valid_dim, dtype=torch.float32, device='cuda') 
                 dw_cls = mappings[y_com.long()]
+                loss_class = self.criterion(logits[idx1, self.last_valid_dim:self.valid_dim], (y_com[idx1] - self.last_valid_dim), dw_cls[idx1])
+
                 feat_class = teacher.fc(model.feature(x_replay))
 
                 hkd_Loss = (kd_criterion(feat_class, global_logits).sum(dim=1)).mean() / (feat_class.shape[1])
