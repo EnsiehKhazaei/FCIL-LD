@@ -14,7 +14,7 @@ Federated Class Incremental Learning (FCIL) extends Federated Learning (FL) to d
 * torchvision == 0.21.0
 
 ### Dataset
- * Download the datasets CIFAR-10, CIFAR-100, PPMI, VOC2012 and set the directory in --path. Additionally, set the method to FCILLD.
+Download the datasets CIFAR-10, CIFAR-100, PPMI, VOC2012 and set the directory in --path. Additionally, set the method to FCILLD.
 
 
 # Run Code
