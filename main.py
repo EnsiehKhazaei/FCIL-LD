@@ -4,7 +4,6 @@ from copy import deepcopy
 
 import models
 from constant import *
-from clients.MFCL import MFCL_client
 from clients.FCILLD import FCILLD_client
 from models.ResNet import ResNet18, ResNets
 from models.myNetwork import network
@@ -54,19 +53,6 @@ if args.dataset == CIFAR100 or args.dataset == CIFAR10:
     dataset = CL_dataset(args)
     feature_extractor = ResNet18(args.num_classes, cifar=True)
     ds = dataset.train_dataset
-elif args.dataset == tinyImageNet:
-    dataset = CL_dataset(args)
-    feature_extractor = ResNet18(args.num_classes, cifar=False)
-    ds = dataset.train_dataset
-    args.generator_model = 'TINYIMNET_GEN'
-elif args.dataset == SuperImageNet:
-    from models.imagenet_resnet import resnet18
-    dataset = SuperImageNet(args.path, version=args.version, num_tasks=args.n_tasks, num_clients=args.num_clients, batch_size=args.batch_size)
-    args.num_classes = dataset.num_classes
-    feature_extractor = resnet18(args.num_classes)
-    args.generator_model = 'IMNET_GEN'
-    args.img_size = dataset.img_size
-    ds = dataset
 elif args.dataset == 'ppmi':
     dataset = CL_dataset(args)
     feature_extractor = ResNets(args, use_pretrained=True)
@@ -92,8 +78,6 @@ gen_classes = 0
 num_participants = int(args.frac * args.num_clients)
 clients, max_accuracy = [], []
 forgetting_list = []
-if args.method == MFCL:
-    generator = models.__dict__['generator'].__dict__[args.generator_model](zdim=args.z_dim, convdim=args.conv_dim)
 
 
 class_counts = np.zeros((args.n_tasks * task_size, args.num_clients), dtype=int)
@@ -113,8 +97,8 @@ for i in range(args.num_clients):
         client = PROX(args.batch_size, args.epochs, ds, group, args.dataset)
     elif args.method == ORACLE:
         client = ORACLE(args.batch_size, args.epochs, ds, group, args.dataset)
-    elif args.method == MFCL:
-        client = MFCL_client(args.batch_size, args.epochs, ds, group, args.w_kd, args.w_ft, args.syn_size, args.dataset)
+    #elif args.method == MFCL:
+    #    client = MFCL_client(args.batch_size, args.epochs, ds, group, args.w_kd, args.w_ft, args.syn_size, args.dataset)
     elif args.method == FCILLD:
         client = FCILLD_client(args.batch_size, args.epochs, ds, group, args.w_kd, args.w_ft, args.syn_size, args.dataset)
     
@@ -167,7 +151,7 @@ for t in range(args.n_tasks):
             forgetting += (max_accuracy[k] - accuracies[k]) / t
         forgetting_list.append(forgetting)
     if t != args.n_tasks - 1:
-        if args.method == MFCL or args.method == FCILLD:
+        if args.method == FCILLD:#args.method == MFCL or args.method == FCILLD:
             teacher = copy.deepcopy(global_model)
             for client in clients:
                 client.last_valid_dim = classes_learned
