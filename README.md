@@ -10,8 +10,8 @@ Federated Class Incremental Learning (FCIL) extends Federated Learning (FL) to d
 
 ### Prerequisite
 * python == 3.9
-* torch == 1.13.1
-* torchvision == 0.14.1
+* torch == 2.6.0
+* torchvision == 0.21.0
 
 ### Dataset
  * Download the datasets CIFAR-10, CIFAR-100, PPMI, VOC2012 and set the directory in --path. Additionally, set the method to FCILLD.
@@ -24,6 +24,9 @@ Federated Class Incremental Learning (FCIL) extends Federated Learning (FL) to d
   <pre><code id="code-to-copy">python main.py --dataset={DATASET_NAME} --method=FCILLD --num_clients=5 --path={PATH_TO_DATASET}</code></pre>
 </div>
 
+# Output
+
+The output file, including the accuracy and forgetting in each task, will be saved in the results folder.
 
 
 # Citation
