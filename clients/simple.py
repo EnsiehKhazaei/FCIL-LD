@@ -23,29 +23,15 @@ class AVG:
         
 
     def set_dataloader(self, samples):
-        if self.dataset_name in [CIFAR100, tinyImageNet, CIFAR10, 'ppmi', 'voc2012', 'stanford']:
+        if self.dataset_name in [CIFAR100, CIFAR10, 'ppmi', 'voc2012', 'stanford']:
             self.train_loader = DataLoader(Subset(self.train_dataset, samples), batch_size=self.batch_size, shuffle=True)
         if self.dataset_name == SuperImageNet:
             self.train_loader = self.train_dataset.get_dl(samples, train=True)
 
     def set_next_t(self):
         self.current_t += 1
-        # print('self.current_t')
-        # print(self.current_t)
         samples = self.groups[self.current_t]
         
-        # Subset(self.train_dataset, samples)
-        # data = [d for d in dataset if d[1] in classes]
-        # memory_samples = []
-        # selected_memory_samples = None
-        # if self.current_t != 0:
-        #     for t in range(self.current_t):
-        #         memory_samples.extend(self.groups[t])
-        #     selected_memory_samples = random.sample(memory_samples, self.args.ipc * (self.current_t))
-    
-        # print(samples)
-        # print('len(samples)')
-        # print(len(samples))
         self.set_dataloader(samples)
 
     def train(self, model, lr, teacher, generator_server, glob_iter_):
@@ -61,26 +47,6 @@ class AVG:
                 loss.backward()
                 opt.step()
         model.to('cpu')
-
-    # def create_protos(self, model):
-    #     model.to("cuda").eval()
-    #     features, labels = [], []
-    #     # for task_id, test_loader in enumerate(train_loaders):
-    #     for i, (x, y) in enumerate(self.train_loader):
-    #             x, y = x.to('cuda'), y.to('cuda')
-    #             with torch.no_grad():
-    #                 outputs = model(x)
-    #             features.extend(model.feature(x).cpu().detach().numpy())
-    #             labels.extend(y.cpu().numpy()) 
-    #     features = np.array(features)
-    #     labels = np.array(labels)
-        
-    #     unique_labels = np.unique(labels)
-    #     # Sort the unique labels in ascending order
-    #     # unique_labels = np.sort(unique_labels)
-    #     centroids = np.array([features[labels == label].mean(axis=0) for label in range(min(unique_labels),max(unique_labels)+1)])
-    #     model.to("cpu")
-    #     return centroids
 
 
 class PROX(AVG):
