@@ -1,7 +1,7 @@
 MFCL = 'MFCL'
 FedAVG = 'FedAVG'
 FedProx = 'FedProx'
-DFRD = 'DFRD'
+FCILLD = 'FCILLD'
 ORACLE = 'oracle'
 CIFAR100 = 'CIFAR100'
 tinyImageNet = 'tiny_imagenet'
