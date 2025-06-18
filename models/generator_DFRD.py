@@ -219,12 +219,6 @@ class GeneratorBig(nn.Module):
         img = self.conv_blocks6(img)
         return img
 
-    # def sample(self, size, device):
-    #     # sample z
-    #     z = torch.randn(size, self.z_dim).to(device)
-    #     z = z.to(device)
-    #     X = self.forward(z)
-    #     return X
 
 
 def CIFAR_GEN(bn=False, zdim=1000, in_channel=3, img_sz=32, out_channel=128, convdim=64):
@@ -277,84 +271,7 @@ class Generator_ACGan(nn.Module):
             nn.BatchNorm2d(in_channel, affine=False)
         )
 
-        # self.data_set = args.dataset #['data_set']
-        # self.latent_dim = args.z_dim #['latent_dim']
-        # self.noise_label_combine = 'mul' #args['noise_label_combine']
-        # # if self.data_set in ['CIFAR-10', 'FMNIST', 'MNIST', 'SVHN']:
-        # #     self.n_classes = 10
-        # # elif self.data_set in ['CIFAR-100']:
-        # #     self.n_classes = 100
-        # # elif self.data_set in ['Tiny-Imagenet']:
-        # #     self.n_classes = 200
-        # # elif self.data_set in ['FOOD101']:
-        # #     self.n_classes = 101
-        
-        # # if self.data_set == CIFAR100 :
-        # #     self.n_classes = 100
-        # # elif self.data_set == tinyImageNet:
-        # #     self.n_classes = 200
-        # # elif self.data_set in ['FOOD101']:
-        # #     self.n_classes = 101        
-
-        
-        # if self.noise_label_combine in ['cat']:
-        #     input_dim = 2 * self.latent_dim
-        # elif self.noise_label_combine in ['cat_naive']:
-        #     input_dim = self.latent_dim + self.n_classes
-        # else:
-        #     input_dim = self.latent_dim
-
-
-        # self.layer1 = nn.Sequential(nn.ConvTranspose2d(input_dim, 512, 4, 1, 0, bias = False),
-        #                             nn.ReLU(True))
-        
-        # # self.layer1 = nn.Sequential(nn.ConvTranspose2d(input_dim, 128, 4, 1, 0, bias = False),
-        # #                            nn.ReLU(True))
-
-
-        # self.layer2 = nn.Sequential(nn.ConvTranspose2d(512, 256, 4, 2, 1, bias = False),
-        #                             nn.BatchNorm2d(256),
-        #                             nn.ReLU(True))
-        
-        # # self.layer2 = nn.Sequential(nn.ConvTranspose2d(128, 128, 4, 2, 1, bias = False),
-        # #                            nn.BatchNorm2d(128),
-        # #                            nn.ReLU(True))
-
-        # self.layer3 = nn.Sequential(nn.ConvTranspose2d(256, 128, 4, 2, 1, bias = False),
-        #                             nn.BatchNorm2d(128),
-        #                             nn.ReLU(True))
-        # # self.layer3 = nn.Sequential(nn.ConvTranspose2d(128, 64, 4, 2, 1, bias = False),
-        # #                            nn.BatchNorm2d(64),
-        # #                            nn.ReLU(True))
-        
-        # self.layer4_1 = nn.Sequential(nn.ConvTranspose2d(128, 3, 4, 2, 1, bias = False),
-        #                             nn.Tanh())
-        # # self.layer4_1 = nn.Sequential(nn.ConvTranspose2d(64, 3, 4, 2, 1, bias = False),
-        # #                            nn.Tanh())
-
-        # self.layer4_2 = nn.Sequential(nn.ConvTranspose2d(128, 64, 4, 2, 1, bias = False),
-        #                            nn.BatchNorm2d(64),
-        #                            nn.ReLU(True)) 
-
-        # self.layer5 = nn.Sequential(nn.ConvTranspose2d(64, 3, 4, 2, 1, bias = False),
-        #                            nn.Tanh()) 
-
-        # self.layer4_3 = nn.Sequential(nn.ConvTranspose2d(128, 1, 4, 2, 1, bias = False),
-        #                            nn.Tanh()) 
-
-        # self.layer4_4 = nn.Sequential(nn.ConvTranspose2d(128, 128, 4, 2, 1, bias = False),
-        #                            nn.BatchNorm2d(128),
-        #                            nn.ReLU(True))
-        
-        # self.layer4_5 = nn.Sequential(nn.ConvTranspose2d(128, 64, 4, 2, 1, bias = False),
-        #                            nn.BatchNorm2d(64),
-        #                            nn.ReLU(True))
-        
-        # self.layer4_6 = nn.Sequential(nn.ConvTranspose2d(64, 3, 3, 1, 1, bias = False),
-        #                            nn.Tanh())
-        # # self.embedding = nn.Embedding(self.n_classes, self.latent_dim)
-        
-        
+     
     def forward(self, z): #, label, n_classes):
         out = self.l1(z)
         out = out.view(out.shape[0], self.out_channel, self.init_size, self.init_size)
@@ -363,50 +280,5 @@ class Generator_ACGan(nn.Module):
         img = self.conv_blocks1(img)
         img = nn.functional.interpolate(img, scale_factor=2)
         img = self.conv_blocks2(img)
-        # # noise = noise.unsqueeze(1)
-        # self.n_classes = n_classes
-        # self.embedding = nn.Embedding(self.n_classes, self.latent_dim).to("cuda")
-        # if self.noise_label_combine == 'mul':
-        #     label_embedding = self.embedding(label)
-        #     # print(noise.shape)
-        #     # print(label_embedding.shape)
-        #     h = torch.mul(noise, label_embedding)
-        # elif self.noise_label_combine == 'add':
-        #     label_embedding = self.embedding(label)
-        #     h = torch.add(noise, label_embedding)
-        # elif self.noise_label_combine == 'cat':
-        #     label_embedding = self.embedding(label)
-        #     h = torch.cat((noise, label_embedding), dim=1)
-        # elif self.noise_label_combine == 'cat_naive':
-        #     label_embedding = Variable(torch.cuda.FloatTensor(len(label), self.n_classes))
-        #     label_embedding.zero_()
-        #     label_embedding.scatter_(1, label.view(-1,1), 1)
-        #     h = torch.cat((noise, label_embedding), dim=1)
-        # else:
-        #     label_embedding = noise
-        #     h = noise
-            
-        # x = h.view(-1, h.shape[1], 1, 1)
         
-        # x = self.layer1(x)
-        # x = self.layer2(x)
-        # x = self.layer3(x)
-        # # if self.data_set in ['Tiny-Imagenet', 'FOOD101']:
-        # #     x = self.layer4_2(x)
-        # #     x = self.layer5(x)
-        # # elif self.data_set in ['FMNIST', 'MNIST']:
-        # #     x = self.layer4_3(x)
-        # if self.data_set == tinyImageNet: # or self.data_set == CIFAR100:
-        #     x = self.layer4_2(x)
-        #     x = self.layer5(x)
-        # # elif self.data_set == CIFAR100:
-        # #     x = self.layer4_3(x)
-        # elif self.data_set == CIFAR100:
-        #     # x = self.layer4_4(x)
-        #     # x = self.layer4_5(x)
-        #     # x = self.layer4_6(x)
-        #     x = self.layer4_1(x)
-        # else:
-        #     x = self.layer4_1(x)
-
-        return img#, h, label_embedding
+        return img
