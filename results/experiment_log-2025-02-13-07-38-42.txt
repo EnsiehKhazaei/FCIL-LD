@@ -1,0 +1,29 @@
+2025-02-13 07:38:42,830 - __main__ - INFO - method: DFRD
+2025-02-13 07:38:42,830 - __main__ - INFO - dataset: CIFAR10
+2025-02-13 07:38:42,830 - __main__ - INFO - model: resnet18
+2025-02-13 07:38:42,830 - __main__ - INFO - num_clients: 5
+2025-02-13 07:38:42,830 - __main__ - INFO - local epochs: 5
+2025-02-13 07:38:42,830 - __main__ - INFO - local lr: 0.01
+2025-02-13 07:38:42,830 - __main__ - INFO - #rounds per task: 50
+2025-02-13 07:38:42,830 - __main__ - INFO - #selected clients in each round: 0.6
+2025-02-13 07:38:42,830 - __main__ - INFO - batch size: 32
+2025-02-13 07:38:42,830 - __main__ - INFO - alpha distribution: 1.0
+2025-02-13 08:31:56,728 - __main__ - INFO - round 49, accuracy: 99.0999984741211
+2025-02-13 08:31:58,846 - __main__ - INFO - Avg accuracy for clients: [98.26666], 98.26666259765625
+2025-02-13 10:06:26,694 - __main__ - INFO - round 99, accuracy: 83.05000305175781
+2025-02-13 10:06:33,944 - __main__ - INFO - Avg accuracy for clients: [85.9     77.96667], 81.93333435058594
+2025-02-13 10:11:50,350 - __main__ - INFO - total_accuracy_1: [tensor(88.7000), tensor(77.4000)]
+2025-02-13 11:43:33,207 - __main__ - INFO - round 149, accuracy: 65.33333587646484
+2025-02-13 11:43:44,079 - __main__ - INFO - Avg accuracy for clients: [84.53333  32.516666 60.11667 ], 59.05555725097656
+2025-02-13 11:49:03,347 - __main__ - INFO - total_accuracy_2: [tensor(88.1000), tensor(43.7000), tensor(64.2000)]
+2025-02-13 13:20:42,788 - __main__ - INFO - round 199, accuracy: 61.025001525878906
+2025-02-13 13:20:57,376 - __main__ - INFO - Avg accuracy for clients: [82.73334  36.016666 49.399998 67.933334], 59.02083206176758
+2025-02-13 13:26:23,349 - __main__ - INFO - total_accuracy_3: [tensor(84.6500), tensor(42.1500), tensor(57.3500), tensor(59.9500)]
+2025-02-13 14:57:50,337 - __main__ - INFO - round 249, accuracy: 55.220001220703125
+2025-02-13 14:58:08,338 - __main__ - INFO - Avg accuracy for clients: [25.099998 35.466667 56.166668 56.36667  81.      ], 50.81999206542969
+2025-02-13 14:58:23,557 - __main__ - INFO - total_accuracy_4: [tensor(36.4500), tensor(38.5500), tensor(55.3500), tensor(59.0500), tensor(86.7000)]
+2025-02-13 14:58:23,557 - __main__ - INFO - forgetting_0: tensor(10.4000)
+2025-02-13 14:58:23,557 - __main__ - INFO - forgetting_1: tensor(22.3500)
+2025-02-13 14:58:23,557 - __main__ - INFO - forgetting_2: tensor(18.8500)
+2025-02-13 14:58:23,557 - __main__ - INFO - forgetting_3: tensor(27.8125)
+2025-02-13 14:58:23,557 - __main__ - INFO - forgetting: tensor(22.2500)
