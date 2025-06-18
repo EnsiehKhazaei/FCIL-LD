@@ -25,8 +25,6 @@ class AVG:
     def set_dataloader(self, samples):
         if self.dataset_name in [CIFAR100, CIFAR10, 'ppmi', 'voc2012', 'stanford']:
             self.train_loader = DataLoader(Subset(self.train_dataset, samples), batch_size=self.batch_size, shuffle=True)
-        if self.dataset_name == SuperImageNet:
-            self.train_loader = self.train_dataset.get_dl(samples, train=True)
 
     def set_next_t(self):
         self.current_t += 1
