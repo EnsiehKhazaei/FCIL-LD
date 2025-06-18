@@ -1,5 +1,5 @@
 ## Federated Class Incremental Learning
-Pytorch implementation of the paper "Forget Less, Learn More: Contrastive-Based Federated Class Incremental Learning with a Low-Dimensional Projection Layer"\ 
+Pytorch implementation of the paper **Forget Less, Learn More: Contrastive-Based Federated Class Incremental Learning with a Low-Dimensional Projection Layer**\ 
 Proceedings of the Computer Vision and Pattern Recognition Conference (CVPR) 2025\
 You can access the original paper [here](https://openaccess.thecvf.com/content/CVPR2025W/FedVision/papers/Khazaei_Forget_Less_Learn_More_Contrastive-Based_Federated_Class_Incremental_Learning_with_CVPRW_2025_paper.pdf).
 
