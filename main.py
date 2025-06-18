@@ -19,7 +19,7 @@ import datetime
 import copy
 import torch
 
-from models.generator_DFRD import Generator_ACGan, generator_model
+from models.generator import Generator_ACGan, generator_model
 import itertools
 
 args = start()
@@ -145,7 +145,7 @@ for t in range(args.n_tasks):
             logger.info(f"Avg accuracy for clients: {np.mean(np.array(accuracies), axis=0)}, {np.mean(accuracies)}")
             
             if t == 0:
-                generator = generator_model(args)#Generator_ACGan(args)
+                generator = generator_model(args)
                 teacher = copy.deepcopy(global_model)
             if (round + 1) / args.eval_int == 1:
                 gen_classes = task_size * (t+1)
