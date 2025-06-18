@@ -5,7 +5,7 @@ from copy import deepcopy
 import models
 from constant import *
 from clients.MFCL import MFCL_client
-from clients.DFRD import DFRD_client
+from clients.FCILLD import FCILLD_client
 from models.ResNet import ResNet18, ResNets
 from models.myNetwork import network
 from data_prep.data import CL_dataset
@@ -115,8 +115,8 @@ for i in range(args.num_clients):
         client = ORACLE(args.batch_size, args.epochs, ds, group, args.dataset)
     elif args.method == MFCL:
         client = MFCL_client(args.batch_size, args.epochs, ds, group, args.w_kd, args.w_ft, args.syn_size, args.dataset)
-    elif args.method == DFRD:
-        client = DFRD_client(args.batch_size, args.epochs, ds, group, args.w_kd, args.w_ft, args.syn_size, args.dataset)
+    elif args.method == FCILLD:
+        client = FCILLD_client(args.batch_size, args.epochs, ds, group, args.w_kd, args.w_ft, args.syn_size, args.dataset)
     
     clients.append(client)
 
@@ -167,7 +167,7 @@ for t in range(args.n_tasks):
             forgetting += (max_accuracy[k] - accuracies[k]) / t
         forgetting_list.append(forgetting)
     if t != args.n_tasks - 1:
-        if args.method == MFCL or args.method == DFRD:
+        if args.method == MFCL or args.method == FCILLD:
             teacher = copy.deepcopy(global_model)
             for client in clients:
                 client.last_valid_dim = classes_learned
